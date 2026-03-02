@@ -2,8 +2,7 @@ name: Mirror to Main Repository
 
 on:
   push:
-    branches:
-      - staging
+    branches: [ "Staging" ]
 
 jobs:
   mirror:
