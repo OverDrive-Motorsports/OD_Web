@@ -1,0 +1,50 @@
+name: Mirror to Main Repository
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set variables
+        run: |
+          echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+
+      - name: Clone main repository
+        run: |
+          git clone https://x-access-token:${{ secrets.MAIN_REPO_TOKEN }}@github.com/OverDrive-Motorsports/OverDrive.git main-repo
+
+      - name: Sync content
+        run: |
+          cd main-repo
+          git checkout staging || git checkout -b staging
+
+          mkdir -p $REPO_NAME
+          rsync -av --delete \
+            --exclude '.git' \
+            --exclude '.github' \
+            ../ $REPO_NAME/
+
+      - name: Commit and push if changes
+        run: |
+          cd main-repo
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add .
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Sync $REPO_NAME from staging"
+            git push origin staging
+          else
+            echo "No changes to commit"
+          fi
