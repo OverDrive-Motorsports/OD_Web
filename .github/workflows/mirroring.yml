@@ -20,7 +20,12 @@ jobs:
 
       - name: Clone main repository
         run: |
-          git clone https://x-access-token:${{ secrets.MAIN_REPO_TOKEN }}@github.com/OverDrive-Motorsports/OverDrive.git main-repo
+          git clone https://github.com/OverDrive-Motorsports/OverDrive.git main-repo
+
+      - name: Configure authenticated remote
+        run: |
+          cd main-repo
+          git remote set-url origin https://x-access-token:${{ secrets.MAIN_REPO_TOKEN }}@github.com/OverDrive-Motorsports/OverDrive.git
 
       - name: Sync content
         run: |
