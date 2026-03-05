@@ -17,6 +17,10 @@
     --color-gray: #1a1a1a;
 
     --font-primary: var(--font-orbitron), sans-serif;
+    --font-secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    --font-bold: 700;
+    --font-black: 900;
 }
 
 * {
@@ -36,6 +40,14 @@ body {
     font-family: var(--font-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.font-secondary {
+    font-family: var(--font-secondary);
+}
+
+.font-secondary * {
+    font-family: var(--font-secondary);
 }
 
 ::selection {
