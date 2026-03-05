@@ -10,6 +10,9 @@
 import type { Metadata } from "next";
 import { Orbitron } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransitions";
 
 const orbitron = Orbitron({
     subsets: ["latin"],
@@ -30,7 +33,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${orbitron.variable} antialiased`}>{children}</body>
+            <body className={`${orbitron.variable} antialiased`}>
+                <Navbar />
+                <PageTransition>{children}</PageTransition>
+                <Footer />
+            </body>
         </html>
     );
 }
