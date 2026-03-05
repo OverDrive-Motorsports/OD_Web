@@ -13,7 +13,7 @@ export default function Updates() {
             <h1 style={{ fontSize: '2rem', letterSpacing: '0.4em' }}>
                 UPDATES
             </h1>
-            <span style={{ color: 'var(--color-gold)', fontSize: '0.7rem', letterSpacing: '0.4em' }}>
+            <span className="small-text" style={{ color: 'var(--color-gold)', fontSize: '0.7rem', letterSpacing: '0.4em' }}>
                 LATEST
             </span>
         </main>
