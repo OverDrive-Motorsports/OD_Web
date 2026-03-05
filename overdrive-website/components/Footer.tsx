@@ -10,13 +10,30 @@
  */
 
 import Link from 'next/link'
+import { type CSSProperties, type MouseEvent } from 'react'
+
+const footerLinks = [
+    { label: 'GitHub', href: 'https://github.com/OverDrive-Motorsports', external: true },
+    { label: 'Cookies', href: '/cookies', external: false },
+    { label: 'Privacy', href: '/privacy', external: false },
+]
+
+const footerLinkStyle: CSSProperties = {
+    fontSize: '0.7rem',
+    letterSpacing: '0.2em',
+    color: '#707070',
+    textDecoration: 'none',
+    transition: 'color 0.2s',
+}
 
 export default function Footer() {
-    const footerLinks = [
-        { label: 'GitHub', href: 'https://github.com/OverDrive-Motorsports', external: true },
-        { label: 'Cookies', href: '/cookies' },
-        { label: 'Privacy', href: '/privacy' },
-    ]
+    const handleLinkHoverIn = (event: MouseEvent<HTMLElement>) => {
+        event.currentTarget.style.color = 'var(--color-white)'
+    }
+
+    const handleLinkHoverOut = (event: MouseEvent<HTMLElement>) => {
+        event.currentTarget.style.color = '#707070'
+    }
 
     return (
         <footer className="font-secondary !px-4 !py-5 sm:!px-6 md:!px-10 lg:!px-32 lg:!py-6" style={{ padding: '1.5rem 8rem' }}>
@@ -35,9 +52,9 @@ export default function Footer() {
                                 target="_blank"
                                 rel="noreferrer"
                                 className="!text-[0.62rem] md:!text-[0.7rem]"
-                                style={{ fontSize: '0.7rem', letterSpacing: '0.2em', color: '#707070', textDecoration: 'none', transition: 'color 0.2s' }}
-                                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-white)')}
-                                onMouseLeave={e => (e.currentTarget.style.color = '#707070')}
+                                style={footerLinkStyle}
+                                onMouseEnter={handleLinkHoverIn}
+                                onMouseLeave={handleLinkHoverOut}
                             >
                                 {item.label.toUpperCase()}
                             </a>
@@ -46,9 +63,9 @@ export default function Footer() {
                                 key={item.label}
                                 href={item.href}
                                 className="!text-[0.62rem] md:!text-[0.7rem]"
-                                style={{ fontSize: '0.7rem', letterSpacing: '0.2em', color: '#707070', textDecoration: 'none', transition: 'color 0.2s' }}
-                                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-white)')}
-                                onMouseLeave={e => (e.currentTarget.style.color = '#707070')}
+                                style={footerLinkStyle}
+                                onMouseEnter={handleLinkHoverIn}
+                                onMouseLeave={handleLinkHoverOut}
                             >
                                 {item.label.toUpperCase()}
                             </Link>
