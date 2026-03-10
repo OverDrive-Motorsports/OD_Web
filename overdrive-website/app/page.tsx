@@ -9,8 +9,8 @@
 
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 
 export default function Home() {
     const [showIntro, setShowIntro] = useState(true);
@@ -113,6 +113,85 @@ export default function Home() {
                     VER +1.234
                 </p>
             </motion.main>
+
+            {/* Vision Section */}
+            <Section
+                title="Vision"
+                subtitle="The Future of Racing"
+                content="OVERDRIVE is more than just a platform—it's a revolution in how motorsport is experienced. We envision a world where the thrill of racing transcends physical boundaries, where technology and tradition merge to create unprecedented experiences for drivers and fans alike."
+            />
+
+            {/* Problem Section */}
+            <Section
+                title="Problem"
+                subtitle="Breaking Barriers"
+                content="Traditional motorsport faces challenges: high costs, limited accessibility, and environmental concerns. The sport we love is becoming increasingly exclusive, disconnected from the next generation of enthusiasts who demand more immersive, sustainable, and accessible experiences."
+                dark
+            />
+
+            {/* Solution Section */}
+            <Section
+                title="Solution"
+                subtitle="Innovation Meets Passion"
+                content="OVERDRIVE bridges the gap between virtual and physical racing through cutting-edge technology. We combine real-time telemetry, advanced simulation, and social connectivity to create a hybrid platform that democratizes motorsport while maintaining the authenticity and adrenaline that makes racing unforgettable."
+            />
         </section>
     );
+}
+
+
+
+interface SectionProps {
+  title: string;
+  subtitle: string;
+  content: string;
+  dark?: boolean;
+}
+function Section({ title, subtitle, content, dark }: SectionProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section
+      ref={ref}
+      className={`min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-0 ${
+        dark ? "bg-gradient-to-b from-black via-zinc-900 to-black" : "bg-black"
+      }`}
+    >
+      <div className="max-w-3xl text-center flex flex-col gap-6">
+
+        {/* subtitle */}
+        <motion.p
+          className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.26em] md:!tracking-[0.3em]"
+          style={{ color: "var(--color-gold)" }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          {subtitle}
+        </motion.p>
+
+        {/* title */}
+        <motion.h2
+          className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]"
+          initial={{ opacity: 0, y: 60 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          {title}
+        </motion.h2>
+
+        {/* content */}
+        <motion.p
+          className="text-gray-400 text-sm sm:text-base leading-relaxed"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          {content}
+        </motion.p>
+
+      </div>
+    </section>
+  );
 }
