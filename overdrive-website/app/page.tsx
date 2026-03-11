@@ -9,8 +9,34 @@
 
 "use client";
 
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import { ChevronDown } from 'lucide-react';
+function ScrollIndicator() {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const animateScroll = async () => {
+      while (true) {
+        await controls.start({ y: 10, opacity: 0.6 });
+        await controls.start({ y: 0, opacity: 1 });
+      }
+    };
+    animateScroll();
+  }, [controls]);
+
+  return (
+    <motion.div
+      animate={controls}
+      className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+    >
+      <motion.div
+        className="w-3 h-3 border-b-2 border-r-2 border-gold rotate-45"
+      />
+      <p className="text-xs text-gold/50 tracking-widest">Scroll</p>
+    </motion.div>
+  );
+}
 
 export default function Home() {
 	const [showIntro, setShowIntro] = useState(true);
@@ -49,6 +75,26 @@ export default function Home() {
 			<p className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]" style={{ fontSize: "0.7rem", letterSpacing: "0.4em" }}>
 			VER +1.234
 			</p>
+
+			<motion.div
+				className="absolute bottom-12 left-1/2 -translate-x-1/2"
+				initial={{ opacity: 0 }}
+				animate={{ 
+					opacity: 1,
+					y: [0, 12, 0]
+				}}
+				transition={{ 
+					y: {
+					duration: 1,
+					ease: "easeInOut",
+					repeat: Infinity,
+					repeatType: "mirror"
+					},
+					opacity: { duration: 1, delay: 1 }
+				}}
+			>
+			<ChevronDown className="w-8 h-8 text-yellow-500" />
+			</motion.div>
 		</motion.main>
 
 		<Section
@@ -251,9 +297,12 @@ function TechCard({ tech, index, isInView }: TechCardProps) {
 			<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D4AF37]/0 to-[#D4AF37]/0 group-hover:from-[#D4AF37]/5 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
 			<div className="relative z-10">
 			<h3 className="text-xl font-light tracking-wide text-[#D4AF37] mb-1">{tech.name}</h3>
-			<p className="text-gray-300 text-sm sm:text-base leading-relaxed" style={{ fontFamily: "var(--font-secondary)" }}>
-				{tech.description}
-			</p>
+				<p
+					className="text-gray-400 text-sm sm:text-sm leading-relaxed"
+					style={{ fontFamily: "var(--font-secondary)" }}
+				>
+					{tech.description}
+				</p>
 			</div>
 			<div className="absolute top-0 right-0 w-12 h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 			<div className="absolute top-3 right-3 w-6 h-px bg-gradient-to-r from-transparent to-[#D4AF37]/30" />
