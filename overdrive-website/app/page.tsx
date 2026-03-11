@@ -113,36 +113,27 @@ export default function Home() {
                     VER +1.234
                 </p>
             </motion.main>
-
-            {/* Vision Section */}
             <Section
                 title="Vision"
                 subtitle="The Future of Racing"
                 content="OVERDRIVE is more than just a platform—it's a revolution in how motorsport is experienced. We envision a world where the thrill of racing transcends physical boundaries, where technology and tradition merge to create unprecedented experiences for drivers and fans alike."
             />
-
-            {/* Problem Section */}
             <Section
                 title="Problem"
                 subtitle="Breaking Barriers"
                 content="Traditional motorsport faces challenges: high costs, limited accessibility, and environmental concerns. The sport we love is becoming increasingly exclusive, disconnected from the next generation of enthusiasts who demand more immersive, sustainable, and accessible experiences."
                 dark
             />
-
-            {/* Solution Section */}
             <Section
                 title="Solution"
                 subtitle="Innovation Meets Passion"
                 content="OVERDRIVE bridges the gap between virtual and physical racing through cutting-edge technology. We combine real-time telemetry, advanced simulation, and social connectivity to create a hybrid platform that democratizes motorsport while maintaining the authenticity and adrenaline that makes racing unforgettable."
             />
-
             <TechStackSection />
         </section>
     );
 }
 
-
-
 interface SectionProps {
   title: string;
   subtitle: string;
@@ -157,7 +148,6 @@ interface SectionProps {
   dark?: boolean;
 }
 
-// ===== Section Component =====
 function Section({ title, subtitle, content, dark }: SectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -170,8 +160,6 @@ function Section({ title, subtitle, content, dark }: SectionProps) {
       }`}
     >
       <div className="max-w-3xl text-center flex flex-col gap-6">
-
-        {/* Subtitle / Label */}
         <motion.p
           className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.26em] md:!tracking-[0.3em]"
           style={{ color: "var(--color-gold)", fontFamily: "var(--font-secondary)" }}
@@ -182,7 +170,6 @@ function Section({ title, subtitle, content, dark }: SectionProps) {
           {subtitle}
         </motion.p>
 
-        {/* Title */}
         <motion.h2
           className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]"
           style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--font-bold)" }}
@@ -192,8 +179,6 @@ function Section({ title, subtitle, content, dark }: SectionProps) {
         >
           {title}
         </motion.h2>
-
-        {/* Content / Body Text */}
         <motion.p
           className="text-gray-300 text-sm sm:text-base leading-relaxed"
           style={{ fontFamily: "var(--font-secondary)" }}
@@ -208,81 +193,86 @@ function Section({ title, subtitle, content, dark }: SectionProps) {
     </section>
   );
 }
+
 function TechStackSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  const technologies = [
-    { name: 'React', category: 'Frontend Framework', description: 'Modern UI development' },
-    { name: 'Motion', category: 'Animation Engine', description: 'Smooth, performant animations' },
-    { name: 'WebGL', category: '3D Graphics', description: 'Real-time rendering' },
-    { name: 'WebSocket', category: 'Real-time Data', description: 'Live telemetry streaming' },
-    { name: 'AR/VR', category: 'Immersive Tech', description: 'Augmented and virtual reality experiences' },
-    { name: 'Tailwind CSS', category: 'Styling', description: 'Utility-first design' },
+  const techStack = [
+    { name: 'React', description: 'Frontend Framework', color: '#D4AF37' },
+    { name: 'Motion', description: 'Animation Engine', color: '#D4AF37' },
+    { name: 'WebGL', description: '3D Graphics', color: '#D4AF37' },
+    { name: 'WebSocket', description: 'Real-time Data', color: '#D4AF37' },
+    { name: 'AR/VR', description: 'Immersive Tech', color: '#D4AF37' },
+    { name: 'Tailwind CSS', description: 'Styling', color: '#D4AF37' },
   ];
 
   return (
-    <section 
+    <section
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-0 py-24 bg-gradient-to-b from-black via-zinc-950 to-black"
+      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-0 py-24 bg-black"
     >
-      {/* Section Label */}
-      <motion.p
-        className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.26em] md:!tracking-[0.3em] mb-4"
-        style={{ color: "var(--color-gold)", fontFamily: "var(--font-secondary)" }}
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        Built with Precision
-      </motion.p>
+      <div className="max-w-3xl w-full text-center flex flex-col gap-6">
 
-      {/* Section Title */}
-      <motion.h2
-        className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em] mb-12"
-        style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--font-bold)" }}
-        initial={{ opacity: 0, y: 60 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-      > 
-        Tech Stack
-      </motion.h2>
+        {/* Section Label */}
+        <motion.p
+          className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.26em] md:!tracking-[0.3em]"
+          style={{ color: "var(--color-gold)", fontFamily: "var(--font-secondary)" }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          Built with Precision
+        </motion.p>
 
-      {/* Tech Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-        {technologies.map((tech, index) => (
-          <motion.div
-            key={tech.name}
-            className="bg-zinc-900/50 border border-yellow-500/20 p-6 rounded-lg hover:border-yellow-500/50 transition-colors duration-300"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-          >
-            {/* Tech Name */}
-            <h3 
-              className="text-xl mb-2 tracking-[0.25em]"
-              style={{ fontFamily: "var(--font-primary)", fontWeight: 600, color: "var(--color-gold)" }}
+        {/* Section Title */}
+        <motion.h2
+          className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]"
+          style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--font-bold)" }}
+          initial={{ opacity: 0, y: 60 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          Tech Stack
+        </motion.h2>
+
+        {/* Tech Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {techStack.map((tech, index) => (
+            <motion.div
+              key={tech.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              className="group relative"
             >
-              {tech.name}
-            </h3>
-
-            {/* Category */}
-            <p 
-              className="text-sm text-gray-400 mb-2 tracking-wide"
-              style={{ fontFamily: "var(--font-secondary)" }}
-            >
-              {tech.category}
-            </p>
-
-            {/* Description */}
-            <p 
-              className="text-gray-300"
-              style={{ fontFamily: "var(--font-secondary)" }}
-            >
-              {tech.description}
-            </p>
-          </motion.div>
-        ))}
+              <div className="relative bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-2xl border border-white/5 p-8 transition-all duration-300 hover:border-[#D4AF37]/30 hover:shadow-[0_8px_32px_rgba(212,175,55,0.1)] flex flex-col items-center justify-center gap-2 min-h-[140px]">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D4AF37]/0 to-[#D4AF37]/0 group-hover:from-[#D4AF37]/5 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
+                <div className="relative z-10">
+                  <h3 className="text-xl font-light tracking-wide text-[#D4AF37] mb-1">
+                    {tech.name} 
+                  </h3>
+                  <p className="text-xs text-white tracking-wide font-light">
+                    {tech.description}
+                  </p>
+                </div>
+                <div className="absolute top-0 right-0 w-12 h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-3 right-3 w-6 h-px bg-gradient-to-r from-transparent to-[#D4AF37]/30" />
+                  <div className="absolute top-3 right-3 w-px h-6 bg-gradient-to-b from-transparent to-[#D4AF37]/30" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        <motion.p
+          className="text-white text-sm tracking-wide font-light mt-16"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          Modern technologies for exceptional experiences.
+        </motion.p>
       </div>
     </section>
   );

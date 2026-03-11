@@ -66,3 +66,7 @@ body {
 ::-webkit-scrollbar-thumb {
     background: var(--color-gold);
 }
+
+main {
+    padding-top: 72px; /* or whatever your navbar height is */
+}
