@@ -1,0 +1,77 @@
+/*
+##
+## OverDrive 2026
+## Footer shared styles
+##
+*/
+
+.footer-container {
+  font-family: var(--font-secondary);
+  padding: 1.5rem 2rem;
+  color: #585858;
+}
+
+.footer-container .divider {
+  background: linear-gradient(to right, transparent, #494949 20%, #494949 80%, transparent);
+  height: 1px;
+  margin-bottom: 2rem;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .footer-top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: #707070;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-link {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #707070;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--color-white);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.footer-bottom p {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}

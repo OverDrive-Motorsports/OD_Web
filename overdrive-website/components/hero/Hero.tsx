@@ -12,8 +12,6 @@
 import { Suspense, useLayoutEffect, useRef, type MutableRefObject, type RefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
 
 function ModelBMW() {
@@ -52,67 +50,48 @@ function ScrollRotation({
             return;
         }
 
-        modelRef.current.rotation.y = Math.PI + scrollProgressRef.current * Math.PI;
+        // model spins on global page scroll
+        modelRef.current.rotation.y = Math.PI + scrollProgressRef.current * Math.PI * 2;
     });
 
     return null;
 }
 
 export default function Hero() {
-    const sectionRef = useRef<HTMLElement | null>(null);
     const modelRef = useRef<THREE.Group | null>(null);
     const scrollProgressRef = useRef(0);
 
     useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const section = sectionRef.current;
-
-        if (!section) {
-            return;
-        }
-
-        const rotateTrigger = ScrollTrigger.create({
-            trigger: section,
-            start: "center center",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-                scrollProgressRef.current = self.progress;
-            },
-        });
-
-        return () => {
-            rotateTrigger.kill();
-            scrollProgressRef.current = 0;
+        const updateScroll = () => {
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            scrollProgressRef.current = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
         };
+
+        updateScroll();
+        window.addEventListener("scroll", updateScroll, { passive: true });
+
+        return () => window.removeEventListener("scroll", updateScroll);
     }, []);
 
     return (
-        <section
-            ref={sectionRef}
-            className="relative"
-            style={{ backgroundColor: "#0d0d0d" }}
-        >
-            <div className="sticky top-0 h-screen overflow-hidden">
-                <div className="absolute inset-0">
-                    <Canvas camera={{ position: [0, 1.3, 5.8], fov: 34, near: 0.1, far: 100 }} dpr={[1, 1.75]}>
-                        <color attach="background" args={["#0d0d0d"]} />
-                        <ambientLight color="#ffffff" intensity={0.34} />
-                        <directionalLight color="#ffffff" intensity={1.05} position={[-4, 5, 3]} />
-                        <MouseLight />
-                        <ScrollRotation modelRef={modelRef} scrollProgressRef={scrollProgressRef} />
-                        <group ref={modelRef} position={[0, -0.62, 0]} rotation={[0, Math.PI, 0]} scale={1.04}>
-                            <Suspense fallback={null}>
-                                <ModelBMW />
-                            </Suspense>
-                        </group>
-                    </Canvas>
-                </div>
+        <>
+            <div className="fixed inset-0 -z-10 pointer-events-none bg-[#0d0d0d]">
+                <Canvas camera={{ position: [0, 1.3, 5.8], fov: 34, near: 0.1, far: 100 }} dpr={[1, 1.75]}>
+                    <color attach="background" args={["#0d0d0d"]} />
+                    <ambientLight color="#ffffff" intensity={0.34} />
+                    <directionalLight color="#ffffff" intensity={1.05} position={[-4, 5, 3]} />
+                    <MouseLight />
+                    <ScrollRotation modelRef={modelRef} scrollProgressRef={scrollProgressRef} />
+                    <group ref={modelRef} position={[0, -0.62, 0]} rotation={[0, Math.PI, 0]} scale={1.04}>
+                        <Suspense fallback={null}>
+                            <ModelBMW />
+                        </Suspense>
+                    </group>
+                </Canvas>
             </div>
-            <div className="h-[220vh] md:h-[270vh]" />
-        </section>
+            <div className="h-screen" aria-hidden="true" />
+        </>
     );
 }
 

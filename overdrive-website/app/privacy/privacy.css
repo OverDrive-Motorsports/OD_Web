@@ -1,0 +1,76 @@
+/**
+ ##
+ ## OverDrive 2026
+ ## All Technical rights reserved
+ ##
+ ## privacy.css - Privacy policy content and data usage information page.
+ ##
+ */
+
+.legal-container {
+    min-height: 100vh;
+    padding: 10.5rem 2rem 7rem;
+    color: #d9d9d9;
+    font-family: var(--font-secondary);
+}
+
+.legal-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.legal-title {
+    font-size: clamp(1.9rem, 4.8vw, 2.7rem);
+    line-height: 1.1;
+    margin-bottom: 0.85rem;
+    color: #f5f5f5;
+    font-weight: 700;
+}
+
+.legal-updated {
+    font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+    color: #8a8a8a;
+    margin-bottom: 4.5rem;
+}
+
+.legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+    color: #8f8f8f;
+    font-size: clamp(0.98rem, 1.8vw, 1.18rem);
+    line-height: 1.7;
+}
+
+.legal-section-title {
+    font-size: clamp(1.45rem, 3vw, 1.95rem);
+    line-height: 1.2;
+    margin-bottom: 1.1rem;
+    color: #f0f0f0;
+    font-weight: 700;
+}
+
+.legal-list {
+    padding-left: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.legal-highlight {
+    color: #f0f0f0;
+}
+
+.legal-note {
+    margin-bottom: 1rem;
+}
+
+.legal-emphasis {
+    color: #efefef;
+}
+
+@media (max-width: 640px) {
+    .legal-container {
+        padding: 7rem 1.2rem 4rem;
+    }
+}

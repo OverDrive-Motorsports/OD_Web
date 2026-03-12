@@ -3,74 +3,268 @@
  ## OverDrive 2026
  ## All Technical rights reserved
  ##
- ## PrivacyPolicyPage - Privacy policy content and data usage information page.
+ ## HomePage - Main component for the OverDrive website landing page.
  ##
  */
 
-export default function PrivacyPage() {
+"use client";
+
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+
+export default function Home() {
+    const [showIntro, setShowIntro] = useState(true);
+
+    useEffect(() => {
+        if (window.scrollY !== 0) window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+        let timer: ReturnType<typeof setTimeout> | null = null;
+        const frame = window.requestAnimationFrame(() => {
+        timer = setTimeout(() => setShowIntro(false), 1100);
+        });
+
+        return () => {
+        window.cancelAnimationFrame(frame);
+        if (timer) clearTimeout(timer);
+        };
+    }, []);
+
     return (
-        <main
-            className="font-secondary !px-4 !pt-28 !pb-16 sm:!px-6 md:!px-8 lg:!pt-[10.5rem] lg:!pb-28"
+        <section style={{ position: "relative" }}>
+        <AnimatePresence>
+            {showIntro && <IntroOverlay />}
+        </AnimatePresence>
+
+        <motion.main
+            className="min-h-screen flex flex-col items-center justify-center gap-6 px-4 sm:px-6 md:px-0"
+            initial={{ opacity: 0, filter: "blur(12px)" }}
+            animate={showIntro ? { opacity: 0, filter: "blur(12px)" } : { opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ willChange: "opacity, filter" }}
+        >
+            <p className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.26em] md:!tracking-[0.3em]" style={{ color: "var(--color-gold)", fontSize: "0.7rem", letterSpacing: "0.3em" }}>
+            MOTORSPORT REIMAGINED
+            </p>
+            <h1 className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]" style={{ fontSize: "3rem", letterSpacing: "0.4em" }}>
+            O V E R D R I V E
+            </h1>
+            <p className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]" style={{ fontSize: "0.7rem", letterSpacing: "0.4em" }}>
+            VER +1.234
+            </p>
+        </motion.main>
+
+        <Section
+            title="Vision"
+            subtitle="The Future of Racing"
+            content="OVERDRIVE is more than just a platform—it's a revolution in how motorsport is experienced. We envision a world where the thrill of racing transcends physical boundaries, where technology and tradition merge to create unprecedented experiences for drivers and fans alike."
+        />
+
+        <Section
+            title="Problem"
+            subtitle="Breaking Barriers"
+            content="Traditional motorsport faces challenges: high costs, limited accessibility, and environmental concerns. The sport we love is becoming increasingly exclusive, disconnected from the next generation of enthusiasts who demand more immersive, sustainable, and accessible experiences."
+            dark
+        />
+
+        <Section
+            title="Solution"
+            subtitle="Innovation Meets Passion"
+            content="OVERDRIVE bridges the gap between virtual and physical racing through cutting-edge technology. We combine real-time telemetry, advanced simulation, and social connectivity to create a hybrid platform that democratizes motorsport while maintaining the authenticity and adrenaline that makes racing unforgettable."
+        />
+
+        <TechStackSection />
+        </section>
+    );
+}
+
+function IntroOverlay() {
+    return (
+        <motion.div
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 200,
+            background: "#000000",
+            pointerEvents: "none",
+            willChange: "opacity",
+        }}
+        >
+        <div
+            className="px-4 sm:px-6 md:px-0"
             style={{
-                minHeight: '100vh',
-                padding: '10.5rem 2rem 7rem',
-                color: '#d9d9d9',
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1.5rem",
             }}
         >
-            <div style={{ maxWidth: '720px', margin: '0 auto' }}>
-                <h1 className="!text-[1.7rem] sm:!text-[2.05rem] md:!text-[2.4rem] lg:!text-[2.7rem]" style={{ fontSize: 'clamp(1.9rem, 4.8vw, 2.7rem)', lineHeight: 1.1, marginBottom: '0.85rem', color: '#f5f5f5', fontWeight: 700 }}>
-                    Privacy Policy
-                </h1>
-                <p className="!text-[0.84rem] sm:!text-[0.92rem] md:!text-[1rem] !mb-10 md:!mb-14 lg:!mb-[4.5rem]" style={{ fontSize: 'clamp(0.92rem, 1.8vw, 1.05rem)', color: '#8a8a8a', marginBottom: '4.5rem' }}>
-                    Last Updated: Mar 5, 2026
-                </p>
+            <motion.p className="!text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem]"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.45 }}
+            style={{ color: "var(--color-gold)", fontSize: "0.7rem", letterSpacing: "0.3em" }}
+            >
+            Aventix present
+            </motion.p>
 
-                <section className="!gap-8 md:!gap-11 !text-[0.92rem] sm:!text-[1rem] md:!text-[1.08rem] lg:!text-[1.18rem]" style={{ display: 'flex', flexDirection: 'column', gap: '2.75rem', color: '#8f8f8f', fontSize: 'clamp(0.98rem, 1.8vw, 1.18rem)', lineHeight: 1.7 }}>
-                    <p>
-                        OverDrive (&quot;we,&quot; &quot;us,&quot; &quot;our&quot;) is committed to protecting your privacy. This Privacy
-                        Policy explains how we collect, use, disclose, and safeguard your information when you use our platform.
-                    </p>
+            <motion.h1 className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            style={{ fontSize: "3rem", letterSpacing: "0.4em" }}
+            >
+            O V E R D R I V E
+            </motion.h1>
 
-                    <div>
-                        <h2 className="!text-[1.28rem] sm:!text-[1.5rem] md:!text-[1.75rem] lg:!text-[1.95rem]" style={{ fontSize: 'clamp(1.45rem, 3vw, 1.95rem)', lineHeight: 1.2, marginBottom: '1.1rem', color: '#f0f0f0', fontWeight: 700 }}>
-                            Information we collect
-                        </h2>
-                        <p style={{ marginBottom: '1rem', color: '#efefef' }}>Minimal Data Collection:</p>
-                        <p style={{ marginBottom: '1rem' }}>
-                            We collect almost no personal data. However, we may collect the following types of information:
-                        </p>
-                        <ul style={{ paddingLeft: '1.3rem', display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-                            <li>
-                                <strong style={{ color: '#f0f0f0' }}>Cookies:</strong> For improving user experience.
-                            </li>
-                            <li>
-                                <strong style={{ color: '#f0f0f0' }}>Analytics Data:</strong> To understand and improve our services.
-                            </li>
-                        </ul>
-                    </div>
+            <p className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]"
+            style={{ opacity: 0, fontSize: "0.7rem", letterSpacing: "0.4em" }}
+            >
+            VER +1.234
+            </p>
+        </div>
+        </motion.div>
+    );
+}
 
-                    <div>
-                        <h2 className="!text-[1.28rem] sm:!text-[1.5rem] md:!text-[1.75rem] lg:!text-[1.95rem]" style={{ fontSize: 'clamp(1.45rem, 3vw, 1.95rem)', lineHeight: 1.2, marginBottom: '1.1rem', color: '#f0f0f0', fontWeight: 700 }}>
-                            Use of your information
-                        </h2>
-                        <p style={{ marginBottom: '1rem' }}>We use the information we collect in the following ways:</p>
-                        <ul style={{ paddingLeft: '1.3rem', display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-                            <li>To operate and maintain the platform.</li>
-                            <li>To improve performance, quality, and product decisions.</li>
-                        </ul>
-                    </div>
+interface SectionProps {
+    title: string;
+    subtitle: string;
+    content: string;
+    dark?: boolean;
+}
 
-                    <div>
-                        <h2 className="!text-[1.28rem] sm:!text-[1.5rem] md:!text-[1.75rem] lg:!text-[1.95rem]" style={{ fontSize: 'clamp(1.45rem, 3vw, 1.95rem)', lineHeight: 1.2, marginBottom: '1.1rem', color: '#f0f0f0', fontWeight: 700 }}>
-                            Data protection
-                        </h2>
-                        <p>
-                            We apply reasonable technical and organizational measures to protect the information we process.
-                            However, no system can be guaranteed as fully secure.
-                        </p>
-                    </div>
-                </section>
+function Section({ title, subtitle, content, dark }: SectionProps) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+    return (
+        <section
+        ref={ref}
+        className={`min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-0 ${
+            dark ? "bg-gradient-to-b from-black via-zinc-900 to-black" : "bg-black"
+        }`}
+        >
+        <div className="max-w-3xl text-center flex flex-col gap-6">
+            <motion.p
+            className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.26em] md:!tracking-[0.3em]"
+            style={{ color: "var(--color-gold)", fontFamily: "var(--font-secondary)" }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+            {subtitle}
+            </motion.p>
+
+            <motion.h2
+            className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]"
+            style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--font-bold)" }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+            {title}
+            </motion.h2>
+
+            <motion.p
+            className="text-gray-300 text-sm sm:text-base leading-relaxed"
+            style={{ fontFamily: "var(--font-secondary)" }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+            {content}
+            </motion.p>
+        </div>
+        </section>
+    );
+}
+
+function TechStackSection() {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+    const techStack = [
+        { name: "React", description: "Frontend Framework", color: "#D4AF37" },
+        { name: "Motion", description: "Animation Engine", color: "#D4AF37" },
+        { name: "WebGL", description: "3D Graphics", color: "#D4AF37" },
+        { name: "WebSocket", description: "Real-time Data", color: "#D4AF37" },
+        { name: "AR/VR", description: "Immersive Tech", color: "#D4AF37" },
+        { name: "Tailwind CSS", description: "Styling", color: "#D4AF37" },
+    ];
+
+    return (
+        <section ref={ref} className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-0 py-24 bg-black">
+        <div className="max-w-3xl w-full text-center flex flex-col gap-6">
+            <motion.p
+            className="small-text !text-[0.58rem] sm:!text-[0.65rem] md:!text-[0.7rem] !tracking-[0.22em] sm:!tracking-[0.26em] md:!tracking-[0.3em]"
+            style={{ color: "var(--color-gold)", fontFamily: "var(--font-secondary)" }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+            Built with Precision
+            </motion.p>
+
+            <motion.h2
+            className="text-center !text-[1.35rem] sm:!text-[2.1rem] md:!text-[3rem] !tracking-[0.22em] sm:!tracking-[0.3em] md:!tracking-[0.4em]"
+            style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--font-bold)" }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+            Tech Stack
+            </motion.h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {techStack.map((tech, i) => (
+                <TechCard key={tech.name} tech={tech} index={i} isInView={isInView} />
+            ))}
             </div>
-        </main>
-    )
+
+            <motion.p
+            className="text-white text-sm tracking-wide font-light mt-16"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            >
+            Modern technologies for exceptional experiences.
+            </motion.p>
+        </div>
+        </section>
+    );
+}
+
+interface TechCardProps {
+    tech: { name: string; description: string; color: string };
+    index: number;
+    isInView: boolean;
+}
+
+function TechCard({ tech, index, isInView }: TechCardProps) {
+    return (
+        <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.1 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{ y: -6, transition: { duration: 0.3 } }}
+        className="group relative"
+        >
+        <div className="relative bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-2xl border border-white/5 p-8 transition-all duration-300 hover:border-[#D4AF37]/30 hover:shadow-[0_8px_32px_rgba(212,175,55,0.1)] flex flex-col items-center justify-center gap-2 min-h-[140px]">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D4AF37]/0 to-[#D4AF37]/0 group-hover:from-[#D4AF37]/5 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
+            <div className="relative z-10">
+            <h3 className="text-xl font-light tracking-wide text-[#D4AF37] mb-1">{tech.name}</h3>
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed" style={{ fontFamily: "var(--font-secondary)" }}>
+                {tech.description}
+            </p>
+            </div>
+            <div className="absolute top-0 right-0 w-12 h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute top-3 right-3 w-6 h-px bg-gradient-to-r from-transparent to-[#D4AF37]/30" />
+            <div className="absolute top-3 right-3 w-px h-6 bg-gradient-to-b from-transparent to-[#D4AF37]/30" />
+            </div>
+        </div>
+        </motion.div>
+    );
 }
