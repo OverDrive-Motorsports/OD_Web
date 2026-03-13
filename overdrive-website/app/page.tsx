@@ -9,7 +9,7 @@
 
 "use client";
 
-import Hero from "@/components/hero/Hero";
+import Hero from "@/components/Hero/Hero";
 import { AnimatePresence, motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { ChevronDown } from 'lucide-react';
@@ -232,7 +232,7 @@ function TechStackSection() {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, amount: 0.3 });
 	const techStack = [
-		{ name: "AR/VR", description: "Immersive Tech", color: "#D4AF37" },
+		{ name: "AR/VR", description: "Immersive Experiences", color: "#D4AF37" },
 		{ name: "WebSocket", description: "Real-time Data", color: "#D4AF37" },
 		{ name: "PostgreSQL+Prisma", description: "Database Management", color: "#D4AF37" },
 		{ name: "Go", description: "Backend Development", color: "#D4AF37" },
