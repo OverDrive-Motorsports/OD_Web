@@ -232,12 +232,12 @@ function TechStackSection() {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, amount: 0.3 });
 	const techStack = [
-		{ name: "React", description: "Frontend Framework", color: "#D4AF37" },
-		{ name: "Motion", description: "Animation Engine", color: "#D4AF37" },
-		{ name: "WebGL", description: "3D Graphics", color: "#D4AF37" },
-		{ name: "WebSocket", description: "Real-time Data", color: "#D4AF37" },
 		{ name: "AR/VR", description: "Immersive Tech", color: "#D4AF37" },
-		{ name: "Tailwind CSS", description: "Styling", color: "#D4AF37" },
+		{ name: "WebSocket", description: "Real-time Data", color: "#D4AF37" },
+		{ name: "PostgreSQL+Prisma", description: "Database Management", color: "#D4AF37" },
+		{ name: "Go", description: "Backend Development", color: "#D4AF37" },
+		{ name: "Flutter", description: "Mobile Development", color: "#D4AF37" },
+		{ name: "Next.js", description: "Frontend Framework", color: "#D4AF37" },
 	];
 
 	return (
