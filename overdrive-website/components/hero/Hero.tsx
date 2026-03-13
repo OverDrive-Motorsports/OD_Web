@@ -49,9 +49,7 @@ function ScrollRotation({
         if (!modelRef.current) {
             return;
         }
-
-        // model spins on global page scroll
-        modelRef.current.rotation.y = Math.PI + scrollProgressRef.current * Math.PI * 2;
+        modelRef.current.rotation.y = 1.75 * Math.PI + scrollProgressRef.current * Math.PI * 2;
     });
 
     return null;
@@ -83,7 +81,7 @@ export default function Hero() {
                     <directionalLight color="#ffffff" intensity={1.05} position={[-4, 5, 3]} />
                     <MouseLight />
                     <ScrollRotation modelRef={modelRef} scrollProgressRef={scrollProgressRef} />
-                    <group ref={modelRef} position={[0, -0.62, 0]} rotation={[0, Math.PI, 0]} scale={1.04}>
+                    <group ref={modelRef} position={[0, -0.5, 0]} rotation={[0, - Math.PI, 0]} scale={1}>
                         <Suspense fallback={null}>
                             <ModelBMW />
                         </Suspense>
