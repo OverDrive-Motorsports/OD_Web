@@ -9,7 +9,7 @@
 
 "use client";
 
-import Hero from "@/components/Hero/Hero";
+import Hero from "@/components/Hero";
 import { AnimatePresence, motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { ChevronDown } from 'lucide-react';
