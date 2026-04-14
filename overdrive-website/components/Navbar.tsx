@@ -10,75 +10,13 @@
  */
 
 import Link from 'next/link'
-import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
-
-const NAV_ITEMS = ['Roadmap', 'Updates'] as const
-
-const baseLinkStyle: CSSProperties = {
-    fontSize: '0.75rem',
-    letterSpacing: '0.2em',
-    color: '#707070',
-    textDecoration: 'none',
-    transition: 'color 0.2s',
-}
-
-const menuButtonStyle: CSSProperties = {
-    fontSize: '0.75rem',
-    letterSpacing: '0.2em',
-    color: 'var(--color-white)',
-    textDecoration: 'none',
-    border: '1px solid #333',
-    padding: '0.5rem 0.9rem',
-    borderRadius: '999px',
-    background: 'transparent',
-    transition: 'border-color 0.2s, color 0.2s',
-}
-
-const ctaButtonStyle: CSSProperties = {
-    justifySelf: 'end',
-    fontSize: '0.75rem',
-    letterSpacing: '0.2em',
-    color: 'var(--color-white)',
-    textDecoration: 'none',
-    border: '1px solid #333',
-    padding: '0.5rem 1.2rem',
-    borderRadius: '999px',
-    transition: 'border-color 0.2s, color 0.2s',
-}
-
-const mobileDropdownPanelStyle: CSSProperties = {
-    borderRadius: '1rem',
-    background: 'rgba(13, 13, 13, 0.92)',
-    backdropFilter: 'blur(10px)',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.25)',
-}
+import { useEffect, useRef, useState } from 'react'
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [visible, setVisible] = useState(true)
     const [menuOpen, setMenuOpen] = useState(false)
     const lastScrollY = useRef(0)
-    const mobileDropdownStateClass = menuOpen
-        ? 'max-h-72 opacity-100 mt-6 translate-y-0'
-        : 'max-h-0 opacity-0 mt-0 -translate-y-2 pointer-events-none'
-
-    const handleTextHoverIn = (event: MouseEvent<HTMLElement>) => {
-        event.currentTarget.style.color = 'var(--color-white)'
-    }
-
-    const handleTextHoverOut = (event: MouseEvent<HTMLElement>) => {
-        event.currentTarget.style.color = '#707070'
-    }
-
-    const handlePillHoverIn = (event: MouseEvent<HTMLElement>) => {
-        event.currentTarget.style.borderColor = 'var(--color-gold)'
-        event.currentTarget.style.color = 'var(--color-gold)'
-    }
-
-    const handlePillHoverOut = (event: MouseEvent<HTMLElement>) => {
-        event.currentTarget.style.borderColor = '#333'
-        event.currentTarget.style.color = 'var(--color-white)'
-    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -163,14 +101,20 @@ export default function Navbar() {
 
                 {/* LINKS */}
                 <div className="!hidden md:!flex !gap-4 sm:!gap-6 md:!gap-12 !justify-self-end md:!justify-self-center" style={{ display: 'flex', gap: '3rem', justifySelf: 'center' }}>
-                    {NAV_ITEMS.map((item) => (
+                    {['Roadmap', 'Updates'].map((item) => (
                         <Link
                             key={item}
                             href={`/${item.toLowerCase()}`}
                             className="!text-[0.62rem] sm:!text-[0.68rem] md:!text-[0.75rem]"
-                            style={baseLinkStyle}
-                            onMouseEnter={handleTextHoverIn}
-                            onMouseLeave={handleTextHoverOut}
+                            style={{
+                                fontSize: '0.75rem',
+                                letterSpacing: '0.2em',
+                                color: '#707070',
+                                textDecoration: 'none',
+                                transition: 'color 0.2s',
+                            }}
+                            onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-white)')}
+                            onMouseLeave={e => (e.currentTarget.style.color = '#707070')}
                         >
                             {item.toUpperCase()}
                         </Link>
@@ -181,10 +125,26 @@ export default function Navbar() {
                 <button
                     type="button"
                     className="md:hidden col-start-3 !justify-self-end !text-[0.62rem] sm:!text-[0.68rem]"
-                    style={menuButtonStyle}
+                    style={{
+                        fontSize: '0.75rem',
+                        letterSpacing: '0.2em',
+                        color: 'var(--color-white)',
+                        textDecoration: 'none',
+                        border: '1px solid #333',
+                        padding: '0.5rem 0.9rem',
+                        borderRadius: '999px',
+                        background: 'transparent',
+                        transition: 'border-color 0.2s, color 0.2s',
+                    }}
                     onClick={() => setMenuOpen(prev => !prev)}
-                    onMouseEnter={handlePillHoverIn}
-                    onMouseLeave={handlePillHoverOut}
+                    onMouseEnter={e => {
+                        e.currentTarget.style.borderColor = 'var(--color-gold)'
+                        e.currentTarget.style.color = 'var(--color-gold)'
+                    }}
+                    onMouseLeave={e => {
+                        e.currentTarget.style.borderColor = '#333'
+                        e.currentTarget.style.color = 'var(--color-white)'
+                    }}
                     aria-expanded={menuOpen}
                     aria-label="Toggle menu"
                 >
@@ -195,9 +155,25 @@ export default function Navbar() {
                 <a
                     href="#"
                     className="hidden md:block !text-[0.68rem] md:!text-[0.75rem] !px-4 md:!px-[1.2rem]"
-                    style={ctaButtonStyle}
-                    onMouseEnter={handlePillHoverIn}
-                    onMouseLeave={handlePillHoverOut}
+                    style={{
+                        justifySelf: 'end',
+                        fontSize: '0.75rem',
+                        letterSpacing: '0.2em',
+                        color: 'var(--color-white)',
+                        textDecoration: 'none',
+                        border: '1px solid #333',
+                        padding: '0.5rem 1.2rem',
+                        borderRadius: '999px',
+                        transition: 'border-color 0.2s, color 0.2s',
+                    }}
+                    onMouseEnter={e => {
+                        e.currentTarget.style.borderColor = 'var(--color-gold)'
+                        e.currentTarget.style.color = 'var(--color-gold)'
+                    }}
+                    onMouseLeave={e => {
+                        e.currentTarget.style.borderColor = '#333'
+                        e.currentTarget.style.color = 'var(--color-white)'
+                    }}
                 >
                     DOWNLOAD
                 </a>
@@ -205,21 +181,32 @@ export default function Navbar() {
 
             {/* MOBILE DROPDOWN */}
             <div
-                className={`md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileDropdownStateClass}`}
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${menuOpen ? 'max-h-72 opacity-100 mt-6 translate-y-0' : 'max-h-0 opacity-0 mt-0 -translate-y-2 pointer-events-none'}`}
             >
                 <div
                     className="ml-auto w-full sm:w-[15rem] flex flex-col items-end gap-4 px-4 py-4"
-                    style={mobileDropdownPanelStyle}
+                    style={{
+                        borderRadius: '1rem',
+                        background: 'rgba(13, 13, 13, 0.92)',
+                        backdropFilter: 'blur(10px)',
+                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.25)',
+                    }}
                 >
-                    {NAV_ITEMS.map((item) => (
+                    {['Roadmap', 'Updates'].map((item) => (
                         <Link
                             key={`mobile-${item}`}
                             href={`/${item.toLowerCase()}`}
                             className="!text-[0.68rem] text-right"
-                            style={baseLinkStyle}
+                            style={{
+                                fontSize: '0.75rem',
+                                letterSpacing: '0.2em',
+                                color: '#707070',
+                                textDecoration: 'none',
+                                transition: 'color 0.2s',
+                            }}
                             onClick={() => setMenuOpen(false)}
-                            onMouseEnter={handleTextHoverIn}
-                            onMouseLeave={handleTextHoverOut}
+                            onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-white)')}
+                            onMouseLeave={e => (e.currentTarget.style.color = '#707070')}
                         >
                             {item.toUpperCase()}
                         </Link>
@@ -227,10 +214,16 @@ export default function Navbar() {
                     <a
                         href="#"
                         className="!text-[0.68rem] text-right"
-                        style={baseLinkStyle}
+                        style={{
+                            fontSize: '0.75rem',
+                            letterSpacing: '0.2em',
+                            color: '#707070',
+                            textDecoration: 'none',
+                            transition: 'color 0.2s',
+                        }}
                         onClick={() => setMenuOpen(false)}
-                        onMouseEnter={handleTextHoverIn}
-                        onMouseLeave={handleTextHoverOut}
+                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-white)')}
+                        onMouseLeave={e => (e.currentTarget.style.color = '#707070')}
                     >
                         DOWNLOAD
                     </a>

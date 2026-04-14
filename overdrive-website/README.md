@@ -1,6 +1,6 @@
 # OverDrive Website
 
-Frontend marketing/landing website for the OverDrive project, built with Next.js (App Router), TypeScript, Tailwind CSS, and Framer Motion.
+Frontend marketing/landing website for the OverDrive project, built with Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, and React Three Fiber.
 
 ## Prerequisites
 
@@ -34,42 +34,50 @@ overdrive-website/
     page.tsx
     globals.css
   components/
-    Navbar.tsx
-    Footer.tsx
+    Hero/
+      Hero.tsx
+    Navbar/
+      Navbar.tsx
+      navbar.css
+    Footer/
+      Footer.tsx
+      footer.css
     PageTransitions.tsx
   public/
-  wiki/
-    Home.md
-    How-to-Contribute.md
-    User-Guide.md
+    models/
+      bmw_m_hybrid_v8.glb
+  package.json
+  tsconfig.json
+  next.config.ts
+  postcss.config.mjs
+  eslint.config.mjs
 ```
 
-## UX and Animation Notes
+## Key Features
 
-- `Navbar.tsx`
-  - Fixed at top, transparent + blur background.
-  - Becomes hidden while scrolling down (after threshold), reappears on up scroll.
-  - Forced visible near page bottom to avoid footer overlap issues.
-  - Mobile menu uses height/opacity/translate transition classes.
+- `components/Hero/Hero.tsx`
+  - Client-side 3D hero using `@react-three/fiber` and `@react-three/drei`.
+  - Scroll-driven model animation: rotates the car 45° and then zooms into the scene.
+  - Mouse-following light and a preloaded glTF car model for smooth performance.
 
-- `app/page.tsx` (Home)
-  - Intro overlay is displayed on first mount.
-  - Intro dismiss is delayed (`1100ms`) and synchronized with a frame callback.
-  - Main hero content is blurred/hidden until intro ends, then fades in.
+- `app/page.tsx`
+  - Home page includes an introductory overlay on first load.
+  - Main landing content fades in after the intro overlay dismisses.
+  - Page sections are built as reusable content blocks for vision, problem, and solution.
 
-- `PageTransitions.tsx`
-  - Route-level fade in on navigation.
-  - Home route skips initial fade to avoid stacking with intro overlay.
+- `components/PageTransitions.tsx`
+  - Route-level fade animations for navigation.
+  - The home page uses a simplified entry animation to avoid overlap with the intro overlay.
+
+## Notes
+
+- The active homepage uses a full-screen fixed background canvas, so `Hero` is rendered behind interactive page sections.
+- The 3D model asset is located in `public/models/bmw_m_hybrid_v8.glb` and is preloaded with `useGLTF.preload`.
+- If you see a Next.js workspace root warning during build, run commands from this folder and keep the lockfile at the project root.
 
 ## Conventions
 
-- Keep existing visual style unchanged unless explicitly requested.
-- Prefer small refactors with no behavioral change for cleanup tasks.
-- Add comments only for non-obvious logic (scroll behavior, timing, transitions).
-- Reuse centralized constants for repeated links/styles when possible.
-
-## Wiki Pages
-
-- [Home](./wiki/Home.md)
-- [How to Contribute](./wiki/How-to-Contribute.md)
-- [User Guide](./wiki/User-Guide.md)
+- Preserve current visual styling unless a change is specifically requested.
+- Favor small, behavior-preserving refactors for cleanup.
+- Add comments only for non-trivial animation or scroll logic.
+- Keep reusable styles and layout decisions centralized when possible.
