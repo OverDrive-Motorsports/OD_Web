@@ -1,0 +1,68 @@
+/**
+ ##
+ ## OverDrive 2026
+ ## All Technical rights reserved
+ ##
+ ## GlobalStyles - Global stylesheet defining base resets, theme variables, and shared UI styles.
+ ##
+ */
+
+@import "tailwindcss";
+
+:root {
+    --color-gold: #c9a84c;
+    --color-white: #ffffff;
+    --color-black: #0d0d0d;
+    --color-dark: #111111;
+    --color-gray: #1a1a1a;
+
+    --font-primary: var(--font-orbitron), sans-serif;
+    --font-secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    --font-bold: 700;
+    --font-black: 900;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-secondary {
+    font-family: var(--font-secondary);
+}
+
+.font-secondary * {
+    font-family: var(--font-secondary);
+}
+
+::selection {
+    background-color: var(--color-gold);
+    color: var(--color-black);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+}
