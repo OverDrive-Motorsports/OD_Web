@@ -1,0 +1,86 @@
+[
+  {
+    "id": "01",
+    "label": "Q1 2026",
+    "heading": "Fondations",
+    "milestones": [
+      {
+        "status": "done",
+        "title": "Identité visuelle définie",
+        "description": "Charte graphique fixée : fond sombre, accents or et bleu, effet de verre dépoli. Appliquée sur mobile, VR et web.",
+        "tags": ["Design", "UI/UX"],
+        "image": "https://i.pinimg.com/736x/82/41/ea/8241ea1f40588d25a1ea97d16948a53c.jpg"
+      },
+      {
+        "status": "done",
+        "title": "Architecture backend définie",
+        "description": "Mise en place de la passerelle centrale qui distribue les données de course vers les applications.",
+        "tags": ["Backend", "Infra"],
+        "image": "https://i.pinimg.com/736x/50/22/ca/5022ca6d0724f83a47143247d8152173.jpg"
+      }
+    ]
+  },
+  {
+    "id": "02",
+    "label": "Q2 2026",
+    "heading": "Momentum",
+    "milestones": [
+      {
+        "status": "done",
+        "title": "Première version de l'app mobile",
+        "description": "Calendrier des courses, suivi des championnats, menu de navigation en forme de pilule.",
+        "tags": ["Mobile"],
+        "image": "https://i.pinimg.com/1200x/5c/db/44/5cdb444c540d0d4356289727c5c5a294.jpg"
+      },
+      {
+        "status": "done",
+        "title": "Écran d'accueil VR",
+        "description": "Conception validée de l'accueil de l'expérience VR.",
+        "tags": ["VR/AR"],
+        "image": "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/ca7eab3520f1ecc567b323a16db51316b2d7851f.jpg"
+      }
+    ]
+  },
+  {
+    "id": "03",
+    "label": "Q3 2026",
+    "heading": "Expansion",
+    "milestones": [
+      {
+        "status": "active",
+        "title": "Données de course en direct",
+        "description": "Le calendrier et les pages championnat affichent des données réelles, plus de contenu de test.",
+        "tags": ["Mobile", "Données live"],
+        "image": "https://i.pinimg.com/1200x/a5/2b/48/a52b481090b113f00a18a57d99ce2286.jpg"
+      },
+      {
+        "status": "active",
+        "title": "Pages VR restantes",
+        "description": "Conception des pages Championnat, Calendrier, Profil et Recherche.",
+        "tags": ["VR/AR"],
+        "image": "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/ca7eab3520f1ecc567b323a16db51316b2d7851f.jpg"
+      }
+    ]
+  },
+  {
+    "id": "04",
+    "label": "Q4 2026",
+    "heading": "Lancement",
+    "milestones": [
+      {
+        "status": "planned",
+        "title": "Plusieurs championnats",
+        "description": "Ajout de F1, WRC et Formule E dans l'application.",
+        "tags": ["Multi-championnats"],
+        "image": "https://i.pinimg.com/1200x/a5/2b/48/a52b481090b113f00a18a57d99ce2286.jpg"
+      },
+      {
+        "status": "planned",
+        "title": "Lancement public",
+        "description": "Ouverture de l'app mobile, du tableau de bord web et de l'expérience VR.",
+        "tags": ["Lancement"],
+        "image": "https://i.pinimg.com/1200x/db/61/48/db61487ccd2d3dc2d4cccb1ef8898b2c.jpg"
+      }
+    ]
+  }
+]
