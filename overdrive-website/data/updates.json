@@ -1,0 +1,92 @@
+[
+  {
+    "version": "v1.234",
+    "date": "July 12, 2026",
+    "category": "Feature",
+    "title": "Widgets de télémétrie en réalité virtuelle",
+    "excerpt": "Affichage des données de vitesse, de position et d'écarts directement dans l'environnement VR.",
+    "body": [
+      "Les widgets de télémétrie sont désormais disponibles dans l'expérience VR : vitesse, écarts entre pilotes et position sur la piste s'affichent en temps réel autour de l'utilisateur.",
+      "Ces widgets s'ajoutent à l'écran d'accueil déjà disponible et préparent l'arrivée des pages Championnat et Calendrier en VR."
+    ],
+    "tags": ["Telemetry", "AR/VR"],
+    "image": "https://pplx-res.cloudinary.com/image/upload/pplx_search_images/ca7eab3520f1ecc567b323a16db51316b2d7851f.jpg",
+    "video": null,
+    "comment": "Vue pilote/casque, cohérente avec la télémétrie centrée sur le pilote."
+  },
+  {
+    "version": "v1.229",
+    "date": "July 2, 2026",
+    "category": "Improvement",
+    "title": "Application mobile plus rapide",
+    "excerpt": "Réduction du temps de chargement du calendrier et des pages championnat.",
+    "body": [
+      "Le calendrier et les pages championnat se chargent désormais plus rapidement grâce à une meilleure gestion des appels vers le serveur.",
+      "Cette amélioration prépare le passage aux données de course réelles, encore partiellement simulées à ce stade."
+    ],
+    "tags": ["Performance", "Mobile"],
+    "image": "https://i.pinimg.com/1200x/5c/db/44/5cdb444c540d0d4356289727c5c5a294.jpg",
+    "video": null,
+    "comment": "Filé de vitesse en piste, pour illustrer la notion de rapidité."
+  },
+  {
+    "version": "v1.221",
+    "date": "June 21, 2026",
+    "category": "Fix",
+    "title": "Corrections de stabilité",
+    "excerpt": "Résolution de plusieurs plantages liés à l'affichage des widgets sur mobile.",
+    "body": [
+      "Correction d'un plantage survenant lors du changement rapide entre les pages Calendrier et Championnat.",
+      "Ajustement de l'affichage sur certains écrans où les widgets se superposaient."
+    ],
+    "tags": ["Stability"],
+    "image": "https://i.pinimg.com/1200x/db/61/48/db61487ccd2d3dc2d4cccb1ef8898b2c.jpg",
+    "video": null,
+    "comment": "Conditions difficiles maîtrisées, en écho à la stabilisation de l'app."
+  },
+  {
+    "version": "v1.210",
+    "date": "June 9, 2026",
+    "category": "Announcement",
+    "title": "Aventix rejoint le programme Epitech Paris",
+    "excerpt": "Présentation officielle du projet OverDrive dans le cadre de l'EIP.",
+    "body": [
+      "L'équipe Aventix a présenté OverDrive lors d'une session dédiée aux projets étudiants d'Epitech Paris.",
+      "L'occasion de partager la vision du projet : rendre le sport automobile plus immersif et plus accessible grâce à la réalité virtuelle et augmentée."
+    ],
+    "tags": ["Community"],
+    "image": "https://i.pinimg.com/1200x/a5/2b/48/a52b481090b113f00a18a57d99ce2286.jpg",
+    "video": null,
+    "comment": "Visuel hypercar Le Mans, pour marquer le côté prestige de l'annonce."
+  },
+  {
+    "version": "v1.198",
+    "date": "May 28, 2026",
+    "category": "Feature",
+    "title": "Nouveau menu de navigation",
+    "excerpt": "Remplacement de la barre de navigation classique par un menu en forme de pilule.",
+    "body": [
+      "Le menu de navigation de l'application mobile adopte une nouvelle forme, en pilule, plus proche de l'identité visuelle du projet.",
+      "Ce menu reste accessible en permanence et donne accès aux pages principales de l'application."
+    ],
+    "tags": ["Mobile", "Design"],
+    "image": "https://i.pinimg.com/736x/82/41/ea/8241ea1f40588d25a1ea97d16948a53c.jpg",
+    "video": null,
+    "comment": "Ambiance nuit/pluie, dans le ton sombre de la nouvelle identité visuelle."
+  },
+  {
+    "version": "v1.182",
+    "date": "May 14, 2026",
+    "category": "Improvement",
+    "title": "Passerelle backend consolidée",
+    "excerpt": "Uniformisation de la façon dont les données circulent entre le serveur et les applications.",
+    "body": [
+      "Le serveur central (la passerelle) qui distribue les données vers les applications a été réorganisé pour être plus simple à maintenir et à faire évoluer.",
+      "Ce changement est invisible pour les utilisateurs mais facilite l'ajout de futures fonctionnalités."
+    ],
+    "tags": ["Backend"],
+    "image": "https://i.pinimg.com/736x/50/22/ca/5022ca6d0724f83a47143247d8152173.jpg",
+    "video": null,
+    "comment": "Endurance de nuit sous la pluie, pour une amélioration invisible mais continue."
+  }
+]
